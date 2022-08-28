@@ -1,0 +1,289 @@
+---
+title: "Data manipulation the Tidy Way"
+subtitle: "Using r packages - dplyr, tidyr, and dbplyr"  
+author: 
+  - "Bilikisu Olatunji"
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    includes:
+      after_body: insert-logo.html
+    css: xaringan-themer.css
+    nature:
+      slideNumberFormat: "%current%"
+      highlightStyle: github
+      highlightLines: true
+      ratio: 16:9
+      countIncrementalSlides: true
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width=9, fig.height=3.5, fig.retina=3,
+  out.width = "100%",
+  cache = FALSE,
+  echo = TRUE,
+  message = FALSE, 
+  warning = FALSE,
+  hiline = TRUE
+)
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_duo_accent(
+  primary_color = "#1F65CC",
+  secondary_color = "#2B76CC",
+  inverse_header_color = "#FFFFFF"
+)
+```
+
+## 🧕 About Me
+
+### &#x1F44B; Hi, I'm Olatunji Bilikisu Wunmi
+### &#x1F4BC; Data Scientist, Shiny Developer and Certified RStudio Instructor
+### 🏢Business Data Laboratory, Abuja FCT
+### &#x1F426; @qbwoa
+### ![](linkedin.png)<https://www.linkedin.com/in/bilikisuolatunji/>
+### 🥰&#x1F379; #rstats, Founder, co-organizer @AbujaRUG, @RLadiesAbuja.
+---
+## Who We Are - Abuja R Users Group
+![](img/code_hero_rstats.png)
+---
+class: inverse center middle
+
+# tidyr - idy data
+
+---
+
+![](img/tidydata_illustrated.jpeg)
+---
+## Tidy data is data where:
+
+.pull-left[
+
+- #### Every column is variable.
+- #### Every row is an observation.
+- #### Every cell is a single value.
+]
+
+.pull-right[
+
+![](img/tidydata_happy.jpeg)
+]
+
+---
+## Installing the `tidyr` package
+```{r eval=FALSE}
+# The easiest way to get tidyr is to install the whole tidyverse:
+install.packages("tidyverse")
+
+# Alternatively, install just tidyr:
+install.packages("tidyr")
+
+# Or the development version from GitHub:
+# install.packages("devtools")
+devtools::install_github("tidyverse/tidyr")
+```
+## Load tidyr library
+```{r eval=FALSE}
+library(tidyr)
+```
+
+---
+## Pivotting 
+ - converts between long and wide forms using `pivot_longer()` and `pivot_wider()`
+
+.pull-left[
+```{r eval=FALSE}
+pivot_longer(
+  data,
+  cols,
+  names_to = "name",
+  names_prefix = NULL,
+  names_sep = NULL,
+  names_pattern = NULL,
+  names_ptypes = NULL,
+  names_transform = NULL,
+  names_repair = "check_unique",
+  values_to = "value",
+  values_drop_na = FALSE,
+  values_ptypes = NULL,
+  values_transform = NULL,
+  ...
+)
+```
+
+]
+
+.pull-right[
+```{r eval=FALSE}
+pivot_wider(
+  data,
+  id_cols = NULL,
+  id_expand = FALSE,
+  names_from = name,
+  names_prefix = "",
+  names_sep = "_",
+  names_glue = NULL,
+  names_sort = FALSE,
+  names_vary = "fastest",
+  names_expand = FALSE,
+  names_repair = "check_unique",
+  values_from = value,
+  values_fill = NULL,
+  values_fn = NULL,
+  unused_fn = NULL,
+  ...
+)
+```
+
+]
+
+---
+## Code Walthrough
+
+
+---
+## Splitting and combining character columns. 
+Use separate() and extract() to pull a single character column into multiple columns; use unite() to combine multiple columns into a single character column.
+
+```{r eval=FALSE}
+separate(
+  data,
+  col,
+  into,
+  sep = "[^[:alnum:]]+",
+  remove = TRUE,
+  convert = FALSE,
+  extra = "warn",
+  fill = "warn",
+  ...
+)
+```
+
+
+
+---
+class: inverse center middle
+
+# dplyr - grammar of data manipulation
+
+---
+
+![](img/dplyr_wrangling.png)
+
+---
+
+## Subset columns using their names and types - select()
+
+--
+### Selection features 
+- :, !, & and |, c() 
+
+--
+
+### Helpers functions
+- everything(), last_col(), starts_with(), ends_with(), contains(), matches(), all_of(), any_of(), where()
+
+--
+```{r eval=FALSE}
+
+select(.data, ...)
+```
+
+
+---
+## Code Walthrough
+
+
+---
+
+
+
+
+## Create, modify, and delete columns - mutate()
+
+```{r eval=FALSE}
+mutate(.data, ...)
+
+# S3 method for data.frame
+mutate(
+  .data,
+  ...,
+  .keep = c("all", "used", "unused", "none"),
+  .before = NULL,
+  .after = NULL
+)
+
+transmute(.data, ...)
+```
+
+
+---
+## Code Walthrough
+
+
+---
+
+## Subset rows using column values - filter()
+
+```{r eval=FALSE}
+filter(.data, ..., .preserve = FALSE)
+```
+
+--
+
+### Useful filter functions
+
+These includes:
+==, >, >= etc
+
+&, |, ! 
+
+is.na(), between(), near()
+
+---
+
+## Code Walkthrough
+
+
+
+---
+
+## Summarise each group to fewer rows - summarise(), summarize()
+
+```{r eval=FALSE}
+summarise(.data, ..., .groups = NULL)
+
+summarize(.data, ..., .groups = NULL)
+```
+
+--
+## Arrange rows by column values - arrange()
+
+```{r eval=FALSE}
+arrange(.data, ..., .by_group = FALSE)
+```
+
+---
+## Code Walkthrough
+
+---
+class: center, middle
+
+# Questions, Comments 😎
+
+---
+class: center, middle
+
+# Thanks!😊
+
+## Video, Slides and codes for this webinar would be available online:
+
+[**Github**](https://github.com/AbujaRUG/Data-manipulation-the-tidy-way)<br>
+[**Twitter**](https://twitter.com/AbujaRUG)<br>
+[**LinkedIn**](https://www.linkedin.com/in/abuja-r-user-group-669ab521b/)<br>
+[**YouTube**](https://www.youtube.com/channel/UC_bfGqjzgx4-N8TEQlJTaNQ)
+
